@@ -15,11 +15,15 @@ start_minikube_cluster(){
 }
 
 check_docker_is_running_and_wait(){
-    IS_DOCKER_RUNNING=$(docker stats --no-stream)
-    while [[ ! ${IS_DOCKER_RUNNING} ]]; do
+    IS_DOCKER_RUNNING=$(docker stats --no-stream 2>/dev/null)
+
+    if [[ ! ${IS_DOCKER_RUNNING} ]]; then
         open /Applications/Docker.app/
-        sleep 2
+    fi
+
+    while [[ ! ${IS_DOCKER_RUNNING} ]]; do
         IS_DOCKER_RUNNING=$(docker stats --no-stream 2>/dev/null)
+        sleep 2
     done
 }
 
