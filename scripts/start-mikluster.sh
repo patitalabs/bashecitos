@@ -20,13 +20,16 @@ check_docker_is_running_and_wait(){
     IS_DOCKER_RUNNING=$(docker stats --no-stream 2>/dev/null)
 
     if [[ ! ${IS_DOCKER_RUNNING} ]]; then
+        echo "Docker is not running, so we will start it 🐳"
         open /Applications/Docker.app/
-    fi
+    fi 
 
     while [[ ! ${IS_DOCKER_RUNNING} ]]; do
         IS_DOCKER_RUNNING=$(docker stats --no-stream 2>/dev/null)
         sleep 2
     done
+
+    echo "Docker is running, now we'll start the minikube cluster ⛴"
 }
 
 # Check that a name for the cluster profile was provided
