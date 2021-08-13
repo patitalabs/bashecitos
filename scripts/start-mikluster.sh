@@ -28,8 +28,6 @@ check_docker_is_running_and_wait(){
         IS_DOCKER_RUNNING=$(docker stats --no-stream 2>/dev/null)
         sleep 2
     done
-
-    echo "Docker is running, now we'll start the minikube cluster ⛴"
 }
 
 # Check that a name for the cluster profile was provided
@@ -42,4 +40,5 @@ fi
 # So, first we check that the Docker is running and if it's not, we wait until it is running.
 check_docker_is_running_and_wait
 
+echo "Docker is running, now we'll start the minikube cluster ⛴"
 start_minikube_cluster "${1}"
