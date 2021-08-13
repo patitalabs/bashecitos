@@ -3,14 +3,16 @@
 start_minikube_cluster(){
     KLUSTER_PROFILE_NAME=$1
 
-    echo "Going to start minikube cluster with profile name ${KLUSTER_PROFILE_NAME} 🌱"
+    echo "Going to start minikube cluster with profile name: ${KLUSTER_PROFILE_NAME} 🌱"
 
     minikube start --memory=8192 --cpus=3 --kubernetes-version=v1.21.3 --vm-driver=virtualbox -p "${KLUSTER_PROFILE_NAME}"
 
     CLUSTER_STARTED=$?
 
     if [[ $CLUSTER_STARTED -eq 0 ]]; then 
-        echo "The minikube cluster ${KLUSTER_PROFILE_NAME} is started 🎉"
+        echo "The minikube cluster ${KLUSTER_PROFILE_NAME} is up and running 🎉 and it's status is:"
+        echo "minikube status -p ${KLUSTER_PROFILE_NAME}"
+        minikube status -p "${KLUSTER_PROFILE_NAME}"
     fi
 }
 
