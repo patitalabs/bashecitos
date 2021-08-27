@@ -23,7 +23,7 @@ jobs:
         run: yes y testuser testuser@example.com | ./scripts/setup-macos.sh
   test:
     runs-on: macos-11
-    needs: setup
+    needs: run_setup_macos
     steps:
       - name: Run setup macOS test
         run: bats --tap test/setup-macos-test.sh
