@@ -47,38 +47,42 @@ install_general_tools(){
     done
 }
 
-install_oh_my_zsh(){
+install_ohmyzsh(){
     echo "Installing Oh My Zsh"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
-setup_oh_my_zsh_completions(){
+setup_ohmyzsh_completions(){
     echo "Setup Oh My Zsh completions"
-    git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+    git clone https://github.com/zsh-users/zsh-completions "${ZSH_CUSTOM:=~/.oh-my-zsh/custom}"/plugins/zsh-completions
 }
 
-setup_oh_my_zsh_theme(){
+setup_ohmyzsh_theme(){
     ZSH_THEME='awesomepanda'
 
-    echo "Setting ZSH Theme to ${ZSH_THEME}"
+    echo "Setting ZSH Theme to: ${ZSH_THEME}"
     sed -i -e "s/ZSH_THEME=.*/ZSH_THEME=\"${ZSH_THEME}\"/" "${HOME}"/.zshrc
 }
 
-setup_oh_my_zsh_plugins(){ 
+setup_ohmyzsh_plugins(){ 
     ZSH_PLUGINS=(git dotenv osx python zsh-syntax-highlighting zsh-autosuggestions kubectl docker)
 
-    echo "Setting up ZSH plugins to add: ${ZSH_PLUGINS[*]}"
+    echo "Setting up ZSH plugins: ${ZSH_PLUGINS[*]}"
     sed -i -e "s/plugins=.*/plugins=(${ZSH_PLUGINS[*]})/" "${HOME}"/.zshrc
 }
 
 setup_git() {
-    echo "Going to setup git 🐱" 
+    echo "Setting up Git 🐱" 
     echo -n "What is your GitHub username? " 
     read -r GITHUB_USERNAME
     echo -n "What is your GitHub email? "
     read -r GITHUB_EMAIL
-    
+
     sed -e "s/REPLACE_ME_WITH_GITHUB_USERNAME/${GITHUB_USERNAME}/" scripts/templates/gitconfig | sed -e "s/REPLACE_ME_WITH_GITHUB_EMAIL/${GITHUB_EMAIL}/" > "${HOME}"/.gitconfig
+
+    echo "Git was setup with the username: ${GITHUB_USERNAME} and email: ${GITHUB_EMAIL}."
+    echo "The ${HOME}/.gitconfig file is the following: "
+    cat "${HOME}/"/.gitconfig
 }
 
 install_kubernetes_tools(){
@@ -107,9 +111,9 @@ print_preface
 install_homebrew
 upgrade_homebrew
 install_general_tools
-install_oh_my_zsh
-setup_oh_my_zsh_completions
-setup_oh_my_zsh_theme
-setup_oh_my_zsh_plugins
+install_ohmyzsh
+setup_ohmyzsh_completions
+setup_ohmyzsh_theme
+setup_ohmyzsh_plugins
 setup_git
 print_epilogue
