@@ -24,7 +24,6 @@ jobs:
           ANSWERS
       - name: "testesito"
         run: |
-          cat ${HOME}"/.zshrc
           echo "GREEEEEP"
           grep 'ZSH_THEME=' "${HOME}"/.zshrc | sed -n 1p
           echo $?
