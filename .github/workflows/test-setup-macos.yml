@@ -7,23 +7,15 @@ on:
     branches: [ main ]
 
 jobs:
-  setup:
-    runs-on: macos-11
+  test:
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
       - name: Install bats from source
         run: |
           git clone https://github.com/sstephenson/bats.git
           sudo bash -c "bats/install.sh /usr/local"
-  run_setup_macos:
-    runs-on: macos-11
-    needs: setup
-    steps:
       - name: Run setup macOS script
         run: yes y testuser testuser@example.com | ./scripts/setup-macos.sh
-  test:
-    runs-on: macos-11
-    needs: run_setup_macos
-    steps:
-      - name: Run setup macOS test
+      - name: Test setup macOS script
         run: bats --tap test/setup-macos-test.sh
