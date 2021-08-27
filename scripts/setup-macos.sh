@@ -39,7 +39,7 @@ upgrade_homebrew() {
 }
 
 install_general_tools(){
-    GENERAL_TOOLS=(git tree wget watch jq yq ccat bats)
+    GENERAL_TOOLS=(git tree wget watch jq yq ccat)
     echo "Installing some general tools: ${GENERAL_TOOLS[*]}"
 
     for TOOL in "${GENERAL_TOOLS[@]}"; do 
