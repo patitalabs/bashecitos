@@ -117,3 +117,5 @@ setup_ohmyzsh_theme
 setup_ohmyzsh_plugins
 setup_git
 print_epilogue
+
+exit 0
