@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  setup:
     runs-on: macos-11
     steps:
       - uses: actions/checkout@v2
@@ -15,9 +15,13 @@ jobs:
         run: |
           git clone https://github.com/sstephenson/bats.git
           sudo bash -c "bats/install.sh /usr/local"
+  run_setup_macos:
+    needs: setup
+    steps:
       - name: Run setup macOS script
         run: yes y testuser testuser@example.com | ./scripts/setup-macos.sh
+  test:
+    needs: setup
+    steps:
       - name: Run setup macOS test
         run: bats --tap test/setup-macos-test.sh
-      - name: Done!
-        run: echo "Done! 🚀"
