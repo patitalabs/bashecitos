@@ -22,10 +22,6 @@ jobs:
           testuser
           testuser@example.com
           ANSWERS
-      - name: Tests 
-        run: |
-          echo "Home is: ${HOME}"
-          ls -la "${HOME}"/.oh-my-zsh/custom/plugins/
       - name: Test setup macOS script
         run: |
           bats --tap test/setup-macos-test.sh

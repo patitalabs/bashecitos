@@ -58,7 +58,6 @@ install_ohmyzsh_plugins(){
 
     for PLUGIN in "${OHMYZSH_PLUGINS[@]}"; do 
         git clone https://github.com/zsh-users/"${PLUGIN}" "${HOME}"/.oh-my-zsh/custom/plugins/"${PLUGIN}"
-        ls -la "${HOME}"/.oh-my-zsh/custom/plugins/
     done
 }
 
