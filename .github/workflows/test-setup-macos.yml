@@ -27,7 +27,6 @@ jobs:
           echo "Home is: ${HOME}"
           echo "ZSH_CUSTOM is ${ZSH_CUSTOM}"
           ls "${HOME}"/.oh-my-zsh/custom/plugins/
-          ls "${ZSH_CUSTOM}"/.oh-my-zsh/custom/plugins/
           ls ~/.oh-my-zsh/custom/plugins/
       - name: Test setup macOS script
         run: |
