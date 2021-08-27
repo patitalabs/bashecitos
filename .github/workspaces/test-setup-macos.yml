@@ -6,6 +6,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Start Minikube cluster 
-        run: ./scripts/setup-macos.sh
+        run: yes y testuser testuser@example.com | ./scripts/setup-macos.sh
       - name: Done!
         run: echo "Done! 🚀"

@@ -13,9 +13,9 @@ print_preface(){
     echo "📦 VirtualBox"
 
     echo "Do you have those already installed? (Y/N)" 
-    read READY_TO_INSTALL
+    read -r READY_TO_INSTALL
 
-    if [[ $(echo ${READY_TO_INSTALL} | tr '[:upper:]' '[:lower:]') != 'y' ]]; then 
+    if [[ $(echo "${READY_TO_INSTALL}" | tr '[:upper:]' '[:lower:]') != 'y' ]]; then 
         echo "Please go ahead and install the tools that need to be installed manually first."
         exit 1
     fi 
@@ -25,11 +25,11 @@ install_homebrew(){
     IS_HOMEBREW_INSTALLED=$(which brew &>/dev/null)
 
     if [[ ${IS_HOMEBREW_INSTALLED} -eq 0 ]]; then
-        echo "Homebrew version is $(brew --version | sed -n 1p | tr -d 'Homebrew ') is already installed."
+        echo "Homebrew version is $(brew --version | sed -n 1p | sed -e 's/Homebrew //') is already installed."
     else
         echo "Homebrew is not installed. Installing now ... ☕️"
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        echo "Homebrew version is $(brew --version | sed -n 1p | tr -d 'Homebrew ') is now installed."
+        echo "Homebrew version is $(brew --version | sed -n 1p | sed -e 's/Homebrew //') is now installed."
     fi
 }
 
@@ -40,10 +40,10 @@ upgrade_homebrew() {
 
 install_general_tools(){
     GENERAL_TOOLS=(git tree wget watch jq yq ccat)
-    echo "Installing some general tools: ${GENERAL_TOOLS}"
+    echo "Installing some general tools: ${GENERAL_TOOLS[*]}"
 
-    for TOOL in ${GENERAL_TOOLS}; do 
-        brew install ${TOOL}
+    for TOOL in "${GENERAL_TOOLS[@]}"; do 
+        brew install "${TOOL}"
     done
 }
 
@@ -61,34 +61,32 @@ setup_oh_my_zsh_theme(){
     ZSH_THEME='awesomepanda'
 
     echo "Setting ZSH Theme to ${ZSH_THEME}"
-    sed -i -e "s/ZSH_THEME=.*/ZSH_THEME=\"${ZSH_THEME}\"/" $HOME/.zshrc
+    sed -i -e "s/ZSH_THEME=.*/ZSH_THEME=\"${ZSH_THEME}\"/" "${HOME}"/.zshrc
 }
 
 setup_oh_my_zsh_plugins(){ 
     ZSH_PLUGINS=(git dotenv osx python zsh-syntax-highlighting zsh-autosuggestions kubectl docker)
 
-    echo "Setting up ZSH plugins to add: ${ZSH_PLUGINS}"
-    sed -i -e "s/plugins=.*/plugins=(${ZSH_PLUGINS})/" $HOME/.zshrc
-}
-
+    echo "Setting up ZSH plugins to add: ${ZSH_PLUGINS[*]}"
+    sed -i -e "s/plugins=.*/plugins=(${ZSH_PLUGINS[*]})/" "${HOME}"/.zshrc
 }
 
 setup_git() {
     echo "Going to setup git 🐱" 
     echo -n "What is your GitHub username? " 
-    read GITHUB_USERNAME
+    read -r GITHUB_USERNAME
     echo -n "What is your GitHub email? "
-    read GITHUB_EMAIL
+    read -r GITHUB_EMAIL
     
-    cat templates/gitconfig| sed -e "s/REPLACE_ME_WITH_GITHUB_USERNAME/${GITHUB_USERNAME}/" | sed -e "s/REPLACE_ME_WITH_GITHUB_EMAIL/${GITHUB_EMAIL}/" > $HOME/.gitconfig
+    sed -e "s/REPLACE_ME_WITH_GITHUB_USERNAME/${GITHUB_USERNAME}/" scripts/templates/gitconfig | sed -e "s/REPLACE_ME_WITH_GITHUB_EMAIL/${GITHUB_EMAIL}/" > "${HOME}"/.gitconfig
 }
 
 install_kubernetes_tools(){
     KUBERNETES_TOOLS=(stern kubernetes-cli)
-    echo "Installing Kubernetes tools: ${KUBERNETES_TOOLS}"
+    echo "Installing Kubernetes tools: ${KUBERNETES_TOOLS[*]}"
     
-    for TOOL in ${KUBERNETES_TOOLS}; do 
-        brew install ${TOOL}
+    for TOOL in "${KUBERNETES_TOOLS[@]}"; do 
+        brew install "${TOOL}"
     done
 }
 
@@ -96,17 +94,22 @@ install_docker_tools(){
     DOCKER_TOOLS=(dive)
     echo "Installing Docker tools"
 
-    for TOOL in ${DOCKER_TOOLS}; do 
-        brew install ${TOOL}
+    for TOOL in "${DOCKER_TOOLS[@]}"; do 
+        brew install "${TOOL}"
     done 
+}
+
+print_epilogue(){
+    echo "All done! ✅"
 }
 
 print_preface
 install_homebrew
-update_brew
+upgrade_homebrew
 install_general_tools
 install_oh_my_zsh
 setup_oh_my_zsh_completions
 setup_oh_my_zsh_theme
 setup_oh_my_zsh_plugins
 setup_git
+print_epilogue
