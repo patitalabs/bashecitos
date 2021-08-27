@@ -1,3 +1,3 @@
-# Scriptcillos
+# Scriptcitos
 
-Some scripts used to automate some thingies ⛴
+Some scripts used to automate different thingies ⛴
