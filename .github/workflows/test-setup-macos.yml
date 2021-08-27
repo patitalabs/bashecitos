@@ -18,7 +18,7 @@ jobs:
       - name: Run setup macOS script
         run: |
           ./scripts/setup-macos.sh << ANSWERS
-          yes
+          y
           testuser
           testuser@example.com
           ANSWERS
