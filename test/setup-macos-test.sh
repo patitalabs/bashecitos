@@ -19,7 +19,7 @@
 }
 
 @test 'Oh My Zsh theme is setup' {
-  run grep 'ZSH_THEME=' "${HOME}"/.zshrc | sed -n 1p
+  run grep 'ZSH_THEME=' "${HOME}"/.zshrc
   (( status == 0 ))
   [[ "${output}" = "ZSH_THEME=\"awesomepanda\"" ]]
 }
