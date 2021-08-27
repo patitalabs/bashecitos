@@ -24,9 +24,8 @@ jobs:
           ANSWERS
       - name: "testesito"
         run: |
-          echo "GREEEEEP"
           grep 'ZSH_THEME=' "${HOME}"/.zshrc | sed -n 1p
-          echo $?
+          echo "exit code = $?"
       - name: Test setup macOS script
         run: |
           bats --tap test/setup-macos-test.sh
