@@ -103,7 +103,7 @@ install_docker_tools(){
     done 
 }
 
-print_epilogue(){
+print_epilogue_and_exit(){
     echo "All done! ✅"
     exit 0
 }
