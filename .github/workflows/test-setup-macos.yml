@@ -26,7 +26,6 @@ jobs:
         run: |
           echo "Home is: ${HOME}"
           ls -la "${HOME}"/.oh-my-zsh/custom/plugins/
-          ls -la ~/.oh-my-zsh/custom/plugins/
       - name: Test setup macOS script
         run: |
           bats --tap test/setup-macos-test.sh
