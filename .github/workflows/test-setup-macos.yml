@@ -14,7 +14,7 @@ jobs:
       - name: Install bats from source
         run: |
           git clone https://github.com/sstephenson/bats.git
-          ./bats/install.sh /usr/local
+          sudo bash -c "bats/install.sh /usr/local"
       - name: Run setup macOS script
         run: yes y testuser testuser@example.com | ./scripts/setup-macos.sh
       - name: Run setup macOS test
