@@ -22,6 +22,12 @@ jobs:
           testuser
           testuser@example.com
           ANSWERS
+      - name: "testesito"
+        run: |
+          cat ${HOME}"/.zshrc
+          echo "GREEEEEP"
+          grep 'ZSH_THEME=' "${HOME}"/.zshrc | sed -n 1p
+          echo $?
       - name: Test setup macOS script
         run: |
           bats --tap test/setup-macos-test.sh
