@@ -1,0 +1,11 @@
+name: Test setup macOS
+
+jobs:
+  build:
+    runs-on: macos-11
+    steps:
+      - uses: actions/checkout@v2
+      - name: Start Minikube cluster 
+        run: ./scripts/setup-macos.sh
+      - name: Done!
+        run: echo "Done! 🚀"

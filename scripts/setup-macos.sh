@@ -80,7 +80,7 @@ setup_git() {
     echo -n "What is your GitHub email? "
     read GITHUB_EMAIL
     
-    cat gitconfig_template | sed -e "s/REPLACE_ME_WITH_GITHUB_USERNAME/${GITHUB_USERNAME}/" | sed -e "s/REPLACE_ME_WITH_GITHUB_EMAIL/${GITHUB_EMAIL}/" > $HOME/.gitconfig
+    cat templates/gitconfig| sed -e "s/REPLACE_ME_WITH_GITHUB_USERNAME/${GITHUB_USERNAME}/" | sed -e "s/REPLACE_ME_WITH_GITHUB_EMAIL/${GITHUB_EMAIL}/" > $HOME/.gitconfig
 }
 
 install_kubernetes_tools(){
