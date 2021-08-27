@@ -25,7 +25,10 @@ jobs:
       - name: Tests 
         run: |
           echo "${HOME}"
+          echo "${ZSH_CUSTOM}"
           ls "${HOME}"/.oh-my-zsh/custom/plugins/
+          ls "${ZSH_CUSTOM}"/.oh-my-zsh/custom/plugins/
+          ls ~/.oh-my-zsh/custom/plugins/
       - name: Test setup macOS script
         run: |
           bats --tap test/setup-macos-test.sh
