@@ -52,9 +52,13 @@ install_ohmyzsh(){
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
-setup_ohmyzsh_completions(){
-    echo "Setup Oh My Zsh completions"
-    git clone https://github.com/zsh-users/zsh-completions "${ZSH_CUSTOM:=~/.oh-my-zsh/custom}"/plugins/zsh-completions
+install_ohmyzsh_plugins(){
+    OHMYZSH_PLUGINS=(zsh-completions zsh-syntax-highlighting zsh-autosuggestions)
+    echo "Installing Oh My Zsh plugins: ${OHMYZSH_PLUGINS[*]}"
+
+    for PLUGIN in "${OHMYZSH_PLUGINS[@]}"; do 
+        git clone https://github.com/zsh-users/"${PLUGIN}" "${ZSH_CUSTOM:-HOME/.oh-my-zsh/custom}"/plugins/"${PLUGIN}"
+    done
 }
 
 setup_ohmyzsh_theme(){
@@ -65,7 +69,7 @@ setup_ohmyzsh_theme(){
 }
 
 setup_ohmyzsh_plugins(){ 
-    ZSH_PLUGINS=(git dotenv osx python zsh-syntax-highlighting zsh-autosuggestions kubectl docker)
+    ZSH_PLUGINS=(git dotenv osx python kubectl docker zsh-completions zsh-syntax-highlighting zsh-autosuggestions)
 
     echo "Setting up ZSH plugins: ${ZSH_PLUGINS[*]}"
     sed -i -e "s/plugins=.*/plugins=(${ZSH_PLUGINS[*]})/" "${HOME}"/.zshrc
@@ -110,7 +114,7 @@ install_homebrew
 upgrade_homebrew
 install_general_tools
 install_ohmyzsh
-setup_ohmyzsh_completions
+install_ohmyzsh_plugins
 setup_ohmyzsh_theme
 setup_ohmyzsh_plugins
 setup_git
