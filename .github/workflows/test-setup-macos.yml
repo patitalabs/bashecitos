@@ -16,11 +16,13 @@ jobs:
           git clone https://github.com/sstephenson/bats.git
           sudo bash -c "bats/install.sh /usr/local"
   run_setup_macos:
+    runs-on: macos-11
     needs: setup
     steps:
       - name: Run setup macOS script
         run: yes y testuser testuser@example.com | ./scripts/setup-macos.sh
   test:
+    runs-on: macos-11
     needs: setup
     steps:
       - name: Run setup macOS test
