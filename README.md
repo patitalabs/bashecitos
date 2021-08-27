@@ -1,3 +1,3 @@
-# Kubercositas
+# Scriptcillos
 
-Some scripts used to automate some Kubernetes thingies ⛴
+Some scripts used to automate some thingies ⛴
