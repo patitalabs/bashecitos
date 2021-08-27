@@ -2,6 +2,8 @@
 
 # This scripts installs brew on a macOS host and installs the tools that I most generally use to work and play ✨
 
+set -e
+
 print_preface(){
     echo "  🌱 Preface 🌱 " 
     echo " ================ "
@@ -55,8 +57,25 @@ setup_oh_my_zsh_completions(){
     git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 }
 
-setup_oh_my_zsh_pluggins(){
+setup_oh_my_zsh_theme(){
+    ZSH_THEME='awesomepanda'
 
+    echo "Setup ZSH Theme to ${ZSH_THEME}"
+    sed -i -e "s/ZSH_THEME=.*/ZSH_THEME=\"${ZSH_THEME}\"/" $HOME/.zshrc
+}
+
+setup_oh_my_zsh_plugins(){
+
+}
+
+setup_git() {
+    echo "Going to setup git 🐱" 
+    echo -n "What is your GitHub username? " 
+    read GITHUB_USERNAME
+    echo -n "What is your GitHub email? "
+    read GITHUB_EMAIL
+    
+    cat gitconfig_template | sed -e "s/REPLACE_ME_WITH_GITHUB_USERNAME/${GITHUB_USERNAME}/" | sed -e "s/REPLACE_ME_WITH_GITHUB_EMAIL/${GITHUB_EMAIL}/" > $HOME/.gitconfig
 }
 
 install_kubernetes_tools(){
@@ -83,4 +102,5 @@ update_brew
 install_general_tools
 install_oh_my_zsh
 setup_oh_my_zsh_completions
-setup_oh_my_zsh_pluggins
+setup_oh_my_zsh_plugins
+setup_git
