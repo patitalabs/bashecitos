@@ -103,10 +103,7 @@ install_docker_tools(){
     done 
 }
 
-print_epilogue_and_exit(){
-    echo "All done! ✅"
-    exit 0
-}
+echo "Going to setup a new macOS 💻"
 
 print_preface
 install_homebrew
@@ -117,4 +114,6 @@ setup_ohmyzsh_completions
 setup_ohmyzsh_theme
 setup_ohmyzsh_plugins
 setup_git
-print_epilogue_and_exit
+
+echo "All done! ✅"
+exit 0
