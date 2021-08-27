@@ -105,6 +105,7 @@ install_docker_tools(){
 
 print_epilogue(){
     echo "All done! ✅"
+    exit 0
 }
 
 print_preface
@@ -116,6 +117,4 @@ setup_ohmyzsh_completions
 setup_ohmyzsh_theme
 setup_ohmyzsh_plugins
 setup_git
-print_epilogue
-
-exit 0
+print_epilogue_and_exit

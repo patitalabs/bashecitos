@@ -16,6 +16,6 @@ jobs:
           git clone https://github.com/sstephenson/bats.git
           sudo bash -c "bats/install.sh /usr/local"
       - name: Run setup macOS script
-        run: yes y testuser testuser@example.com | ./scripts/setup-macos.sh
+        run: yes y testuser testuser@example.com | bash scripts/setup-macos.sh
       - name: Test setup macOS script
         run: bats --tap test/setup-macos-test.sh
