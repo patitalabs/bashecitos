@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# The goal of this script is to create and start a minikube cluster on macOS host.
+# It receives as input the cluster profile name. 
+
 start_minikube_cluster(){
     KLUSTER_PROFILE_NAME=$1
 
@@ -21,7 +24,7 @@ check_docker_is_running_and_wait(){
 
     if [[ ! ${IS_DOCKER_RUNNING} ]]; then
         echo "Docker is not running, so we will start it 🐳"
-        open /Applications/Docker.app/
+        open /Applications/Docker.app/ # macOS specific.
     fi 
 
     while [[ ! ${IS_DOCKER_RUNNING} ]]; do
