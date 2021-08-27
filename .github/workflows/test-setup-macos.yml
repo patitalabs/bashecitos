@@ -1,0 +1,37 @@
+name: Test setup macOS
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  shellcheck:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run shellcheck
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install shellcheck
+          shellcheck scripts/*.sh
+  test:
+    needs: shellcheck
+    runs-on: macos-11
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install bats from source
+        run: |
+          git clone https://github.com/bats-core/bats-core.git
+          sudo bash -c "bats-core/install.sh /usr/local"
+      - name: Run setup macOS script
+        run: |
+          ./scripts/setup-macos.sh << ANSWERS
+          y
+          testuser
+          testuser@example.com
+          ANSWERS
+      - name: Test setup macOS script
+        run: |
+          bats --tap test/setup-macos-test.sh
