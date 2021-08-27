@@ -13,8 +13,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install bats from source
         run: |
-          git clone https://github.com/sstephenson/bats.git
-          sudo bash -c "bats/install.sh /usr/local"
+          git clone https://github.com/bats-core/bats-core.git
+          sudo bash -c "bats-core/install.sh /usr/local"
       - name: Run setup macOS script
         run: |
           ./scripts/setup-macos.sh << ANSWERS
@@ -22,10 +22,6 @@ jobs:
           testuser
           testuser@example.com
           ANSWERS
-      - name: "testesito"
-        run: |
-          grep 'ZSH_THEME=' "${HOME}"/.zshrc | sed -n 1p
-          echo "exit code = $?"
       - name: Test setup macOS script
         run: |
           bats --tap test/setup-macos-test.sh
