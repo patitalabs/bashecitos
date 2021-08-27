@@ -24,8 +24,8 @@ jobs:
           ANSWERS
       - name: Tests 
         run: |
-          echo "${HOME}"
-          echo "${ZSH_CUSTOM}"
+          echo "Home is: ${HOME}"
+          echo "ZSH_CUSTOM is ${ZSH_CUSTOM}"
           ls "${HOME}"/.oh-my-zsh/custom/plugins/
           ls "${ZSH_CUSTOM}"/.oh-my-zsh/custom/plugins/
           ls ~/.oh-my-zsh/custom/plugins/
