@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This scripts installs brew on a macOS host and installs the tools that I most generally use to work and play ✨
+# This scripts installs Homebrew and other tools that I most generally use to work and play, on a macOS host 🍎
 
 set -e
 
@@ -60,11 +60,16 @@ setup_oh_my_zsh_completions(){
 setup_oh_my_zsh_theme(){
     ZSH_THEME='awesomepanda'
 
-    echo "Setup ZSH Theme to ${ZSH_THEME}"
+    echo "Setting ZSH Theme to ${ZSH_THEME}"
     sed -i -e "s/ZSH_THEME=.*/ZSH_THEME=\"${ZSH_THEME}\"/" $HOME/.zshrc
 }
 
-setup_oh_my_zsh_plugins(){
+setup_oh_my_zsh_plugins(){ 
+    ZSH_PLUGINS=(git dotenv osx python zsh-syntax-highlighting zsh-autosuggestions kubectl docker)
+
+    echo "Setting up ZSH plugins to add: ${ZSH_PLUGINS}"
+    sed -i -e "s/plugins=.*/plugins=(${ZSH_PLUGINS})/" $HOME/.zshrc
+}
 
 }
 
@@ -102,5 +107,6 @@ update_brew
 install_general_tools
 install_oh_my_zsh
 setup_oh_my_zsh_completions
+setup_oh_my_zsh_theme
 setup_oh_my_zsh_plugins
 setup_git
