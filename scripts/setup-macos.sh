@@ -22,7 +22,7 @@ print_preface(){
 }
 
 install_homebrew(){
-    IS_HOMEBREW_INSTALLED=$(which brew &>/dev/null)
+    IS_HOMEBREW_INSTALLED=$(command -v brew &>/dev/null)
 
     if [[ ${IS_HOMEBREW_INSTALLED} -eq 0 ]]; then
         echo "Homebrew version is $(brew --version | sed -n 1p | sed -e 's/Homebrew //') is already installed."
