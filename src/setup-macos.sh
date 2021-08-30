@@ -82,20 +82,11 @@ setup_git() {
     echo -n "What is your GitHub email? "
     read -r GITHUB_EMAIL
 
-    sed -e "s/REPLACE_ME_WITH_GITHUB_USERNAME/${GITHUB_USERNAME}/" scripts/templates/gitconfig | sed -e "s/REPLACE_ME_WITH_GITHUB_EMAIL/${GITHUB_EMAIL}/" > "${HOME}"/.gitconfig
+    sed -e "s/REPLACE_ME_WITH_GITHUB_USERNAME/${GITHUB_USERNAME}/" src/templates/gitconfig | sed -e "s/REPLACE_ME_WITH_GITHUB_EMAIL/${GITHUB_EMAIL}/" > "${HOME}"/.gitconfig
 
     echo "Git was setup with the username: ${GITHUB_USERNAME} and email: ${GITHUB_EMAIL}."
     echo "The ${HOME}/.gitconfig file is the following: "
     cat "${HOME}/"/.gitconfig
-}
-
-install_kubernetes_tools(){
-    KUBERNETES_TOOLS=(stern kubernetes-cli minikube)
-    echo "Installing Kubernetes tools: ${KUBERNETES_TOOLS[*]}"
-    
-    for TOOL in "${KUBERNETES_TOOLS[@]}"; do 
-        brew install "${TOOL}"
-    done
 }
 
 install_docker_tools(){
@@ -105,6 +96,16 @@ install_docker_tools(){
     for TOOL in "${DOCKER_TOOLS[@]}"; do 
         brew install "${TOOL}"
     done 
+}
+
+
+install_kubernetes_tools(){
+    KUBERNETES_TOOLS=(stern kubernetes-cli minikube)
+    echo "Installing Kubernetes tools: ${KUBERNETES_TOOLS[*]}"
+    
+    for TOOL in "${KUBERNETES_TOOLS[@]}"; do 
+        brew install "${TOOL}"
+    done
 }
 
 echo "Going to setup a new macOS 💻"
@@ -118,6 +119,8 @@ install_ohmyzsh_plugins
 setup_ohmyzsh_theme
 setup_ohmyzsh_plugins
 setup_git
+install_docker_tools
+install_kubernetes_tools
 
 echo "All done! ✅"
 exit 0
