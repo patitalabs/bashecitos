@@ -82,7 +82,7 @@ setup_git() {
     echo -n "What is your GitHub email? "
     read -r GITHUB_EMAIL
 
-    sed -e "s/REPLACE_ME_WITH_GITHUB_USERNAME/${GITHUB_USERNAME}/" scripts/templates/gitconfig | sed -e "s/REPLACE_ME_WITH_GITHUB_EMAIL/${GITHUB_EMAIL}/" > "${HOME}"/.gitconfig
+    sed -e "s/REPLACE_ME_WITH_GITHUB_USERNAME/${GITHUB_USERNAME}/" src/templates/gitconfig | sed -e "s/REPLACE_ME_WITH_GITHUB_EMAIL/${GITHUB_EMAIL}/" > "${HOME}"/.gitconfig
 
     echo "Git was setup with the username: ${GITHUB_USERNAME} and email: ${GITHUB_EMAIL}."
     echo "The ${HOME}/.gitconfig file is the following: "
