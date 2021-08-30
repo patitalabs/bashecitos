@@ -120,6 +120,7 @@ setup_ohmyzsh_theme
 setup_ohmyzsh_plugins
 setup_git
 install_docker_tools
+install_kubernetes_tools
 
 echo "All done! ✅"
 exit 0
