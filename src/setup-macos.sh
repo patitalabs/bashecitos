@@ -90,7 +90,7 @@ setup_git() {
 }
 
 install_kubernetes_tools(){
-    KUBERNETES_TOOLS=(stern kubernetes-cli)
+    KUBERNETES_TOOLS=(stern kubernetes-cli minikube)
     echo "Installing Kubernetes tools: ${KUBERNETES_TOOLS[*]}"
     
     for TOOL in "${KUBERNETES_TOOLS[@]}"; do 
