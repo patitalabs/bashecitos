@@ -3,6 +3,8 @@
 # The goal of this script is to create and start a minikube cluster on macOS host.
 # It receives as input the cluster profile name. 
 
+set -e
+
 start_minikube_cluster(){
     KLUSTER_PROFILE_NAME=$1
 
