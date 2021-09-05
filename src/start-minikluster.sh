@@ -18,6 +18,13 @@ start_minikube_cluster(){
         echo "The minikube cluster ${KLUSTER_PROFILE_NAME} is up and running 🎉 and it's status is:"
         echo "minikube status -p ${KLUSTER_PROFILE_NAME}"
         minikube status -p "${KLUSTER_PROFILE_NAME}"
+
+        # Showing how to point your shell to minikube's docker-daemon
+        minikube -p "${KLUSTER_PROFILE_NAME}" docker-env | tail -2
+
+        echo " "
+        echo "# To stop minikube, run:"
+        echo "# minikube stop -p ${KLUSTER_PROFILE_NAME}"
     fi
 }
 
