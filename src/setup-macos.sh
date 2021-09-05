@@ -122,8 +122,7 @@ install_ohmyzsh
 install_ohmyzsh_plugins
 setup_ohmyzsh_theme
 setup_ohmyzsh_plugins
-# BUG: For some reason this function is broken :(
-# setup_git
+setup_git
 install_docker_tools
 install_virtual_box
 install_kubernetes_tools
