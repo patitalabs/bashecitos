@@ -9,10 +9,8 @@ print_preface(){
     echo " ================ "
     echo "This script will install some tools, but there are others, that will have to be downloaded and installed manually first: "
     echo "💻 iTerm "
-    echo "🐳 Docker "
-    echo "📦 VirtualBox"
 
-    echo "Do you have those already installed? (Y/N)" 
+    echo "Do you have those already installed? (y/n)" 
     read -r READY_TO_INSTALL
 
     if [[ $(echo "${READY_TO_INSTALL}" | tr '[:upper:]' '[:lower:]') != 'y' ]]; then 
@@ -27,9 +25,11 @@ install_homebrew(){
     if [[ ${IS_HOMEBREW_INSTALLED} -eq 0 ]]; then
         echo "Homebrew version is $(brew --version | sed -n 1p | sed -e 's/Homebrew //') is already installed."
     else
-        echo "Homebrew is not installed. Installing now ... ☕️"
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        echo "Homebrew version is $(brew --version | sed -n 1p | sed -e 's/Homebrew //') is now installed."
+        echo 'Homebrew is not installed. Please install it running the following command on your terminal:' \
+        # We do not want to expand this expression, since it's only for printing purposes.
+        # shellcheck disable=SC2016
+        '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)'
+        exit 1
     fi
 }
 
@@ -90,7 +90,7 @@ setup_git() {
 }
 
 install_docker_tools(){
-    DOCKER_TOOLS=(dive)
+    DOCKER_TOOLS=(docker docker-compose docker-machine dive)
     echo "Installing Docker tools"
 
     for TOOL in "${DOCKER_TOOLS[@]}"; do 
@@ -98,6 +98,10 @@ install_docker_tools(){
     done 
 }
 
+install_virtual_box() {
+    echo "Installing VirtualBox since that's where minikube and docker will be run"
+    brew install virtualbox
+}
 
 install_kubernetes_tools(){
     KUBERNETES_TOOLS=(stern kubernetes-cli minikube)
@@ -120,6 +124,7 @@ setup_ohmyzsh_theme
 setup_ohmyzsh_plugins
 setup_git
 install_docker_tools
+install_virtual_box
 install_kubernetes_tools
 
 echo "All done! ✅"
