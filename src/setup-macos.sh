@@ -122,7 +122,9 @@ install_ohmyzsh
 install_ohmyzsh_plugins
 setup_ohmyzsh_theme
 setup_ohmyzsh_plugins
+set -x
 setup_git
+set +x
 install_docker_tools
 install_virtual_box
 install_kubernetes_tools
