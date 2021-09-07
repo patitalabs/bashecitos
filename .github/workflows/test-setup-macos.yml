@@ -11,6 +11,9 @@ jobs:
     runs-on: macos-11
     steps:
       - uses: actions/checkout@v2
+      - name: Uninstall brew to test the whole setup 
+        run: |
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
       - name: Install bats from source
         run: |
           git clone https://github.com/bats-core/bats-core.git
