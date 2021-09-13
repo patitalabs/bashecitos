@@ -2,6 +2,8 @@
 
 # This scripts installs Homebrew and other tools that I most generally use to work and play, on a macOS host 🍎
 
+set -e
+
 print_preface(){
     echo "  🌱 Preface 🌱 " 
     echo " ================ "
