@@ -11,7 +11,7 @@ print_preface(){
     echo "💻 iTerm "
 
     echo "Do you have those already installed? (y/n)" 
-    read -r READY_TO_INSTALL
+    read READY_TO_INSTALL
 
     if [[ $(echo "${READY_TO_INSTALL}" | tr '[:upper:]' '[:lower:]') != 'y' ]]; then 
         echo "Please go ahead and install the tools that need to be installed manually first."
@@ -78,9 +78,9 @@ setup_ohmyzsh_plugins(){
 setup_git() {
     echo "Setting up Git 🐱" 
     echo -n "What is your GitHub username? " 
-    read -r GITHUB_USERNAME
+    read GITHUB_USERNAME
     echo -n "What is your GitHub email? "
-    read -r GITHUB_EMAIL
+    read GITHUB_EMAIL
 
     sed -e "s/REPLACE_ME_WITH_GITHUB_USERNAME/${GITHUB_USERNAME}/" src/templates/gitconfig | sed -e "s/REPLACE_ME_WITH_GITHUB_EMAIL/${GITHUB_EMAIL}/" > "${HOME}"/.gitconfig
 
