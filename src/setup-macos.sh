@@ -11,7 +11,17 @@ print_preface(){
     echo "Do you have those already installed? (y/n)" 
     read -r READY_TO_INSTALL
 
-    if [[ $(echo "${READY_TO_INSTALL}" | tr '[:upper:]' '[:lower:]') != 'y' ]]; then 
+    if [[ $(echo "${READY_TO_INSTALL}" | tr '[:upper:]' '[:lower:]') == 'y' ]]; then 
+        echo "Great! Do you want to also setup git? (y/n)"
+        read -r SETUP_GIT
+
+        if [[ $(echo "${SETUP_GIT}" | tr '[:upper:]' '[:lower:]') == 'y' ]]; then 
+            echo -n "What is your GitHub username? " 
+            read -r GITHUB_USERNAME
+            echo -n "What is your GitHub email? "
+            read -r GITHUB_EMAIL
+        fi
+    else 
         echo "Please go ahead and install the tools that need to be installed manually first."
         exit 1
     fi 
@@ -74,17 +84,17 @@ setup_ohmyzsh_plugins(){
 }
 
 setup_git() {
-    echo "Setting up Git 🐱" 
-    echo -n "What is your GitHub username? " 
-    read -r GITHUB_USERNAME
-    echo -n "What is your GitHub email? "
-    read -r GITHUB_EMAIL
+    if [[ $(echo "${SETUP_GIT}" | tr '[:upper:]' '[:lower:]') == 'y' ]]; then 
+        echo "Setting up Git 🐱" 
 
-    sed -e "s/REPLACE_ME_WITH_GITHUB_USERNAME/${GITHUB_USERNAME}/" src/templates/gitconfig | sed -e "s/REPLACE_ME_WITH_GITHUB_EMAIL/${GITHUB_EMAIL}/" > "${HOME}"/.gitconfig
+        sed -e "s/REPLACE_ME_WITH_GITHUB_USERNAME/${GITHUB_USERNAME}/" src/templates/gitconfig | sed -e "s/REPLACE_ME_WITH_GITHUB_EMAIL/${GITHUB_EMAIL}/" > "${HOME}"/.gitconfig
 
-    echo "Git was setup with the username: ${GITHUB_USERNAME} and email: ${GITHUB_EMAIL}."
-    echo "The ${HOME}/.gitconfig file is the following: "
-    cat "${HOME}/"/.gitconfig
+        echo "Git was setup with the username: ${GITHUB_USERNAME} and email: ${GITHUB_EMAIL}."
+        echo "The ${HOME}/.gitconfig file is the following: "
+        cat "${HOME}/"/.gitconfig
+    else 
+        echo "Skipping Git 🐱 setup." 
+    fi
 }
 
 install_docker_tools(){

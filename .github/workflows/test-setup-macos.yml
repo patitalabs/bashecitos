@@ -19,6 +19,7 @@ jobs:
         run: |
           ./src/setup-macos.sh << ANSWERS
           y
+          y
           testuser
           testuser@example.com
           ANSWERS
