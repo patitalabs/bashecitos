@@ -17,11 +17,9 @@ jobs:
           sudo bash -c "bats-core/install.sh /usr/local"
       - name: Run setup macOS script
         run: |
-          ./src/setup-macos.sh << ANSWERS
-          y
+          echo "y
           testuser
-          testuser@example.com
-          ANSWERS
+          testuser@example.com" | ./src/setup-macos.sh
       - name: Test setup macOS script
         run: |
           bats --tap test/setup-macos-test.sh
