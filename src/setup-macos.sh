@@ -10,9 +10,12 @@ print_preface(){
     echo " ================ "
     echo "This script will install some tools, but there are others, that will have to be downloaded and installed manually first: "
     echo "💻 iTerm "
+    echo "💎 Homebrew"
 
     echo "Do you have those already installed? (y/n)" 
     read -r READY_TO_INSTALL
+
+    check_that_homebrew_is_installed
 
     if [[ $(echo "${READY_TO_INSTALL}" | tr '[:upper:]' '[:lower:]') == 'y' ]]; then 
         echo "Great! Do you want to also setup git? (y/n)"
@@ -25,7 +28,7 @@ print_preface(){
             read -r GITHUB_EMAIL
         fi
     else 
-        echo "Please go ahead and install the tools that need to be installed manually first."
+        echo "Please install the tools that need to be installed manually first."
         exit 1
     fi 
 }
@@ -121,7 +124,6 @@ install_kubernetes_tools(){
 echo "Going to setup a new macOS 💻"
 
 print_preface
-check_that_homebrew_is_installed
 install_general_tools
 install_ohmyzsh
 install_ohmyzsh_plugins
