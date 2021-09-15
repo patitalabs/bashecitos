@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# This scripts installs Homebrew and other tools that I most generally use to work and play, on a macOS host 🍎
+# This script installs some of the tools that I most generally use to work and play, on a macOS host 🍎
+# It requires Homebrew to already be installed on the host where it will run.
 
 set -e
 
