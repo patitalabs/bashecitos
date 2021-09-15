@@ -89,7 +89,7 @@ setup_git() {
 
         echo "Git was setup with the username: ${GITHUB_USERNAME} and email: ${GITHUB_EMAIL}."
         echo "The ${HOME}/.gitconfig file is the following: "
-        cat "${HOME}/"/.gitconfig
+        cat "${HOME}"/.gitconfig
     else 
         echo "Skipping Git 🐱 setup." 
     fi
