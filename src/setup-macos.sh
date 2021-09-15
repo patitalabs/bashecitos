@@ -30,23 +30,18 @@ print_preface(){
     fi 
 }
 
-install_homebrew(){
+check_that_homebrew_is_installed(){
     IS_HOMEBREW_INSTALLED=$(command -v brew &>/dev/null)
 
     if [[ ${IS_HOMEBREW_INSTALLED} -eq 0 ]]; then
-        echo "Homebrew version is $(brew --version | sed -n 1p | sed -e 's/Homebrew //') is already installed."
+        echo "Homebrew version $(brew --version | sed -n 1p | sed -e 's/Homebrew //') is already installed. So we can proceed with the installation 🚀"
     else
-        echo 'Homebrew is not installed. Please install it running the following command on your terminal:' \
+        echo 'Homebrew is not installed 😥. Please install it running the following command on your terminal:' \
         # We do not want to expand this expression, since it's only for printing purposes.
         # shellcheck disable=SC2016
         '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)'
         exit 1
     fi
-}
-
-upgrade_homebrew() {
-    echo "Upgrading Homebrew... ☕️"
-    brew upgrade
 }
 
 install_general_tools(){
@@ -126,8 +121,7 @@ install_kubernetes_tools(){
 echo "Going to setup a new macOS 💻"
 
 print_preface
-install_homebrew
-upgrade_homebrew
+check_that_homebrew_is_installed
 install_general_tools
 install_ohmyzsh
 install_ohmyzsh_plugins
