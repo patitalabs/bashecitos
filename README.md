@@ -4,7 +4,8 @@ Bash scripts used to automate some thingies 👾
 
 ## How to use bashecitos? 
 
-Go to the [src](src) folder and explore the scripts there. Use any that you find useful, and feel free to open a PR for any improvements that you find.
+* Go to the [src](src) folder and explore the scripts there. Use any that you find useful, and feel free to open a PR for any improvements that you would like to suggest.
+* Take a look too to the [.github/workflows](.github/workflows) folder and add any GitHub Actions that would help test and validate that the scripts are doing what is expected.
 
 ## Why bashecitos? 
 
