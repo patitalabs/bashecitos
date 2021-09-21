@@ -18,4 +18,4 @@ LA Tierrita is an amazing place, and we would really recommend a visit! 💙
 
 Ideas, issues, scripts, and your contributions are more than welcome!
 
-When you add a new script or propose a change, take a look too into the [.github/workflows](.github/workflows) folder and add any GitHub Actions that would help test and validate that the script or the changes are doing what is expected.
+When you add a new script or propose a change, think about how to test and validate that the script or the changes are doing what is expected. [GitHub Actions](https://github.com/features/actions) are used for Continuous Integration in this repository, so take a look into the [.github/workflows](.github/workflows) folder to get some ideas an inspiration! ✨
