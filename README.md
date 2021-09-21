@@ -2,6 +2,10 @@
 
 Bash scripts used to automate some thingies 👾 
 
+## How to use bashecitos? 
+
+Go to the [src](src) folder and explore the scripts there. Use any that you find useful, and feel free to open a PR for any improvements that you find.
+
 ## Why bashecitos? 
 
 A _bache_ in Spanish [from Mexico?], means _pothole_. And they are very famous in my hometown, [LA Tierrita](https://es.wikipedia.org/wiki/Ensenada_(Baja_California)). Not something to be proud of, but a way to put humor into something that has not been fixed in years, in the hometown 😄. So, in a way with _bashecitos_, we are trying to make things a bit better in our day-to-day, while having some fun. 
