@@ -10,7 +10,7 @@ start_minikube_cluster(){
 
     echo "Going to start minikube cluster with profile name: ${KLUSTER_PROFILE_NAME} 🌱"
 
-    minikube start --memory=8192 --cpus=3 --kubernetes-version=v1.21.3 --vm-driver=virtualbox -p "${KLUSTER_PROFILE_NAME}"
+    minikube start --memory=8192 --cpus=3 --disk-size=30g --kubernetes-version=v1.21.3 --vm-driver=virtualbox -p "${KLUSTER_PROFILE_NAME}"
 
     CLUSTER_STARTED=$?
 
