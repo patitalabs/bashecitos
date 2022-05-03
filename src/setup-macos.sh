@@ -5,7 +5,7 @@
 
 set -e
 
-print_preface() {
+function print_preface() {
     echo "  🌱 Preface 🌱 "
     echo " ================ "
     echo "This script will install some tools, but there are others, that will have to be downloaded and installed manually first: "
@@ -33,7 +33,7 @@ print_preface() {
     fi
 }
 
-check_that_homebrew_is_installed() {
+function check_that_homebrew_is_installed() {
     IS_HOMEBREW_INSTALLED=$(command -v brew &>/dev/null)
 
     if [[ ${IS_HOMEBREW_INSTALLED} -eq 0 ]]; then
@@ -47,7 +47,7 @@ check_that_homebrew_is_installed() {
     fi
 }
 
-install_general_tools() {
+function install_general_tools() {
     GENERAL_TOOLS=(git tree wget watch jq yq ccat)
     echo "Installing some general tools: ${GENERAL_TOOLS[*]}"
 
@@ -56,12 +56,12 @@ install_general_tools() {
     done
 }
 
-install_ohmyzsh() {
+function install_ohmyzsh() {
     echo "Installing Oh My Zsh"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
-install_ohmyzsh_plugins() {
+function install_ohmyzsh_plugins() {
     OHMYZSH_PLUGINS=(zsh-completions zsh-syntax-highlighting zsh-autosuggestions)
     echo "Installing Oh My Zsh plugins: ${OHMYZSH_PLUGINS[*]}"
 
@@ -70,21 +70,21 @@ install_ohmyzsh_plugins() {
     done
 }
 
-setup_ohmyzsh_theme() {
+function setup_ohmyzsh_theme() {
     ZSH_THEME='awesomepanda'
 
     echo "Setting ZSH Theme to: ${ZSH_THEME}"
     sed -i -e "s/ZSH_THEME=.*/ZSH_THEME=\"${ZSH_THEME}\"/" "${HOME}"/.zshrc
 }
 
-setup_ohmyzsh_plugins() {
+function setup_ohmyzsh_plugins() {
     ZSH_PLUGINS=(git dotenv osx python kubectl docker zsh-completions zsh-syntax-highlighting zsh-autosuggestions)
 
     echo "Setting up ZSH plugins: ${ZSH_PLUGINS[*]}"
     sed -i -e "s/plugins=.*/plugins=(${ZSH_PLUGINS[*]})/" "${HOME}"/.zshrc
 }
 
-setup_git() {
+function setup_git() {
     if [[ $(echo "${SETUP_GIT}" | tr '[:upper:]' '[:lower:]') == 'y' ]]; then
         echo "Setting up Git 🐱"
 
@@ -98,7 +98,7 @@ setup_git() {
     fi
 }
 
-install_docker_tools() {
+function install_docker_tools() {
     DOCKER_TOOLS=(docker docker-compose docker-machine dive)
     echo "Installing Docker tools"
 
@@ -107,12 +107,12 @@ install_docker_tools() {
     done
 }
 
-install_virtual_box() {
+function install_virtual_box() {
     echo "Installing VirtualBox since that's where minikube and docker will be run"
     brew install virtualbox
 }
 
-install_kubernetes_tools() {
+function install_kubernetes_tools() {
     KUBERNETES_TOOLS=(stern kubernetes-cli minikube)
     echo "Installing Kubernetes tools: ${KUBERNETES_TOOLS[*]}"
 
