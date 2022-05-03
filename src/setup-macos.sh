@@ -5,41 +5,41 @@
 
 set -e
 
-print_preface(){
-    echo "  🌱 Preface 🌱 " 
+print_preface() {
+    echo "  🌱 Preface 🌱 "
     echo " ================ "
     echo "This script will install some tools, but there are others, that will have to be downloaded and installed manually first: "
     echo "💻 iTerm "
     echo "💎 Homebrew"
 
-    echo "Do you have those already installed? (y/n)" 
+    echo "Do you have those already installed? (y/n)"
     read -r READY_TO_INSTALL
 
     check_that_homebrew_is_installed
 
-    if [[ $(echo "${READY_TO_INSTALL}" | tr '[:upper:]' '[:lower:]') == 'y' ]]; then 
+    if [[ $(echo "${READY_TO_INSTALL}" | tr '[:upper:]' '[:lower:]') == 'y' ]]; then
         echo "Great! Do you want to also setup git? (y/n)"
         read -r SETUP_GIT
 
-        if [[ $(echo "${SETUP_GIT}" | tr '[:upper:]' '[:lower:]') == 'y' ]]; then 
-            echo -n "What is your GitHub username? " 
+        if [[ $(echo "${SETUP_GIT}" | tr '[:upper:]' '[:lower:]') == 'y' ]]; then
+            echo -n "What is your GitHub username? "
             read -r GITHUB_USERNAME
             echo -n "What is your GitHub email? "
             read -r GITHUB_EMAIL
         fi
-    else 
+    else
         echo "Please install the tools that need to be installed manually first."
         exit 1
-    fi 
+    fi
 }
 
-check_that_homebrew_is_installed(){
+check_that_homebrew_is_installed() {
     IS_HOMEBREW_INSTALLED=$(command -v brew &>/dev/null)
 
     if [[ ${IS_HOMEBREW_INSTALLED} -eq 0 ]]; then
         echo "Homebrew version $(brew --version | sed -n 1p | sed -e 's/Homebrew //') is already installed. So we can proceed with the installation 🚀"
     else
-        echo 'Homebrew is not installed 😥. Please install it running the following command on your terminal:' \
+        echo 'Homebrew is not installed 😥. Please install it running the following command on your terminal:'
         # We do not want to expand this expression, since it's only for printing purposes.
         # shellcheck disable=SC2016
         '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)'
@@ -47,37 +47,37 @@ check_that_homebrew_is_installed(){
     fi
 }
 
-install_general_tools(){
+install_general_tools() {
     GENERAL_TOOLS=(git tree wget watch jq yq ccat)
     echo "Installing some general tools: ${GENERAL_TOOLS[*]}"
 
-    for TOOL in "${GENERAL_TOOLS[@]}"; do 
+    for TOOL in "${GENERAL_TOOLS[@]}"; do
         brew install "${TOOL}"
     done
 }
 
-install_ohmyzsh(){
+install_ohmyzsh() {
     echo "Installing Oh My Zsh"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
-install_ohmyzsh_plugins(){
+install_ohmyzsh_plugins() {
     OHMYZSH_PLUGINS=(zsh-completions zsh-syntax-highlighting zsh-autosuggestions)
     echo "Installing Oh My Zsh plugins: ${OHMYZSH_PLUGINS[*]}"
 
-    for PLUGIN in "${OHMYZSH_PLUGINS[@]}"; do 
+    for PLUGIN in "${OHMYZSH_PLUGINS[@]}"; do
         git clone https://github.com/zsh-users/"${PLUGIN}" "${HOME}"/.oh-my-zsh/custom/plugins/"${PLUGIN}"
     done
 }
 
-setup_ohmyzsh_theme(){
+setup_ohmyzsh_theme() {
     ZSH_THEME='awesomepanda'
 
     echo "Setting ZSH Theme to: ${ZSH_THEME}"
     sed -i -e "s/ZSH_THEME=.*/ZSH_THEME=\"${ZSH_THEME}\"/" "${HOME}"/.zshrc
 }
 
-setup_ohmyzsh_plugins(){ 
+setup_ohmyzsh_plugins() {
     ZSH_PLUGINS=(git dotenv osx python kubectl docker zsh-completions zsh-syntax-highlighting zsh-autosuggestions)
 
     echo "Setting up ZSH plugins: ${ZSH_PLUGINS[*]}"
@@ -85,26 +85,26 @@ setup_ohmyzsh_plugins(){
 }
 
 setup_git() {
-    if [[ $(echo "${SETUP_GIT}" | tr '[:upper:]' '[:lower:]') == 'y' ]]; then 
-        echo "Setting up Git 🐱" 
+    if [[ $(echo "${SETUP_GIT}" | tr '[:upper:]' '[:lower:]') == 'y' ]]; then
+        echo "Setting up Git 🐱"
 
-        sed -e "s/REPLACE_ME_WITH_GITHUB_USERNAME/${GITHUB_USERNAME}/" src/templates/gitconfig | sed -e "s/REPLACE_ME_WITH_GITHUB_EMAIL/${GITHUB_EMAIL}/" > "${HOME}"/.gitconfig
+        sed -e "s/REPLACE_ME_WITH_GITHUB_USERNAME/${GITHUB_USERNAME}/" src/templates/gitconfig | sed -e "s/REPLACE_ME_WITH_GITHUB_EMAIL/${GITHUB_EMAIL}/" >"${HOME}"/.gitconfig
 
         echo "Git was setup with the username: ${GITHUB_USERNAME} and email: ${GITHUB_EMAIL}."
         echo "The ${HOME}/.gitconfig file is the following: "
         cat "${HOME}"/.gitconfig
-    else 
-        echo "Skipping Git 🐱 setup." 
+    else
+        echo "Skipping Git 🐱 setup."
     fi
 }
 
-install_docker_tools(){
+install_docker_tools() {
     DOCKER_TOOLS=(docker docker-compose docker-machine dive)
     echo "Installing Docker tools"
 
-    for TOOL in "${DOCKER_TOOLS[@]}"; do 
+    for TOOL in "${DOCKER_TOOLS[@]}"; do
         brew install "${TOOL}"
-    done 
+    done
 }
 
 install_virtual_box() {
@@ -112,11 +112,11 @@ install_virtual_box() {
     brew install virtualbox
 }
 
-install_kubernetes_tools(){
+install_kubernetes_tools() {
     KUBERNETES_TOOLS=(stern kubernetes-cli minikube)
     echo "Installing Kubernetes tools: ${KUBERNETES_TOOLS[*]}"
-    
-    for TOOL in "${KUBERNETES_TOOLS[@]}"; do 
+
+    for TOOL in "${KUBERNETES_TOOLS[@]}"; do
         brew install "${TOOL}"
     done
 }
