@@ -1,3 +1,7 @@
+![CI](https://github.com/patitalabs/bashecitos/actions/workflows/ci.yml/badge.svg)
+![Test Setup MacOS](https://github.com/patitalabs/bashecitos/actions/workflows/test-setup-macos.yml/badge.svg)
+[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 # Bashecitos
 
 Bash scripts used to automate some thingies 👾 
