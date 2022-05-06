@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  test-setup-macos:
     strategy:
       fail-fast: false
       matrix:
@@ -31,3 +31,10 @@ jobs:
       - name: Test setup macOS script
         run: |
           bats --tap test/setup-macos-test.sh
+      
+  tests:
+    runs-on: ubuntu-latest
+    needs: test-setup-macos
+    steps:
+      - run: echo All tests passed ✅
+
