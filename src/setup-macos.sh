@@ -47,8 +47,19 @@ function check_that_homebrew_is_installed() {
     fi
 }
 
+function install_git() {
+    IS_GIT_INSTALLED=$(command -v git &>/dev/null)
+
+    if [[ ${IS_GIT_INSTALLED} -eq 0 ]]; then
+        echo "git version $(git --version | sed -n 1p | sed -e 's/git version //') is already installed 🐱."
+    else
+        echo "Installing git 🐱"
+        brew install git
+    fi
+}
+
 function install_general_tools() {
-    GENERAL_TOOLS=(git tree wget watch jq yq ccat)
+    GENERAL_TOOLS=(tree wget watch jq yq ccat)
     echo "Installing some general tools: ${GENERAL_TOOLS[*]}"
 
     for TOOL in "${GENERAL_TOOLS[@]}"; do
@@ -124,6 +135,7 @@ function install_kubernetes_tools() {
 echo "Going to setup a new macOS 💻"
 
 print_preface
+install_git
 install_general_tools
 install_ohmyzsh
 install_ohmyzsh_plugins
