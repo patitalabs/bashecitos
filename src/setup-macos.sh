@@ -124,7 +124,7 @@ function install_virtual_box() {
 }
 
 function install_kubernetes_tools() {
-    KUBERNETES_TOOLS=(stern kubernetes-cli minikube)
+    KUBERNETES_TOOLS=(stern kubernetes-cli minikube helm helmfile)
     echo "Installing Kubernetes tools: ${KUBERNETES_TOOLS[*]}"
 
     for TOOL in "${KUBERNETES_TOOLS[@]}"; do
