@@ -3,7 +3,7 @@
 # This script installs some of the tools that I most generally use to work and play, on a macOS host 🍎
 # It requires Homebrew to already be installed on the host where it will run.
 
-# $ /bin/bash -c "$(curl -fSL https://github.com/patitalabs/bashecitos/blob/VERSION/src/setup-macos.sh)"
+# $ /bin/bash -c "$(curl -fsSL https://github.com/patitalabs/bashecitos/blob/VERSION/src/setup-macos.sh)"
 
 set -e
 
@@ -101,9 +101,9 @@ function setup_git() {
     if [[ $(echo "${SETUP_GIT}" | tr '[:upper:]' '[:lower:]') == 'y' ]]; then
         echo "Setting up Git 🐱"
 
-        curl -fsSL https://raw.githubusercontent.com/patitalabs/bashecitos/main/src/templates/gitconfig -o "${HOME}"/.gitconfig
-
-        sed -e "s/REPLACE_ME_WITH_GITHUB_USERNAME/${GITHUB_USERNAME}/" "${HOME}"/.gitconfig | sed -e "s/REPLACE_ME_WITH_GITHUB_EMAIL/${GITHUB_EMAIL}/" "${HOME}"/.gitconfig
+        curl -fsSL https://raw.githubusercontent.com/patitalabs/bashecitos/main/src/templates/gitconfig -o /tmp/gitconfig
+        sed -e "s/REPLACE_ME_WITH_GITHUB_USERNAME/${GITHUB_USERNAME}/" /tmp/gitconfig | sed -e "s/REPLACE_ME_WITH_GITHUB_EMAIL/${GITHUB_EMAIL}/" >"${HOME}"/.gitconfig
+        rm /tmp/gitconfig
 
         echo "Git was setup with the username: ${GITHUB_USERNAME} and email: ${GITHUB_EMAIL}."
         echo "The ${HOME}/.gitconfig file is the following: "
