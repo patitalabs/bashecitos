@@ -3,7 +3,9 @@
 # This script installs some of the tools that I most generally use to work and play, on a macOS host 🍎
 # It requires Homebrew to already be installed on the host where it will run.
 
-# $ /bin/bash -c "$(curl -fsSL https://github.com/patitalabs/bashecitos/blob/VERSION/src/setup-macos.sh)"
+# This script can be run directly from the terminal with the following command, and replacing TAG with the tag you want to use (e.g. v0.2.0):
+# $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/patitalabs/bashecitos/TAG/src/setup-macos.sh)"
+
 
 set -e
 
