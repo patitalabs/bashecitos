@@ -18,10 +18,11 @@
     del= branch -D
     ls = log --oneline
 	last = log -1 HEAD
-    lsp = log --all --decorate --oneline --graph
+    loggy = log --all --decorate --oneline --graph
+    logsito=shortlog
     delre = push origin -d
     prure = fetch --prune
     review = merge --no-commit --squash
-    end-review = reset --hard origin/master
+    end-review = reset --hard origin/main
 [init]
 	defaultBranch = main
