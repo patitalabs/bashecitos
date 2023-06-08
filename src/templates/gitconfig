@@ -19,7 +19,8 @@
     ls = log --oneline
 	last = log -1 HEAD
     loggy = log --all --decorate --oneline --graph
-    logsito=shortlog
+    logsito= shortlog
+    loghelp= log --help
     delre = push origin -d
     prure = fetch --prune
     review = merge --no-commit --squash
