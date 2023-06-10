@@ -4,7 +4,8 @@
 # It requires Homebrew to already be installed on the host where it will run.
 
 # This script can be run directly from the terminal with the following command, and replacing TAG with the tag you want to use (e.g. v0.2.0):
-# $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/patitalabs/bashecitos/TAG/src/setup-macos.sh)"
+# shellcheck disable=SC2288
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/patitalabs/bashecitos/TAG/src/setup-macos.sh)"
 
 
 set -e

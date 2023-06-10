@@ -1,4 +1,4 @@
-![CI](https://github.com/patitalabs/bashecitos/actions/workflows/ci.yml/badge.svg)
+![Lint](https://github.com/patitalabs/bashecitos/actions/workflows/lint.yml/badge.svg)
 ![Test Setup MacOS](https://github.com/patitalabs/bashecitos/actions/workflows/test-setup-macos.yml/badge.svg)
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 

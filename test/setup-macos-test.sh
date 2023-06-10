@@ -20,7 +20,7 @@
 
 @test 'Oh My Zsh plugins are setup' {
   grep 'plugins=' "${HOME}"/.zshrc | sed -n 2p | sed 's/^[[:space:]]*//'
-  [[ "${output}" = "plugins=(git dotenv osx python kubectl docker zsh-completions zsh-syntax-highlighting zsh-autosuggestions)" ]]
+  [[ "${output}" = "plugins=(git dotenv macos python kubectl docker zsh-completions zsh-syntax-highlighting zsh-autosuggestions)" ]]
 
   [[ -d "${HOME}"/.oh-my-zsh/custom/plugins/zsh-completions ]]
 
