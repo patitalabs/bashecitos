@@ -93,7 +93,7 @@ function setup_ohmyzsh_theme() {
 }
 
 function setup_ohmyzsh_plugins() {
-    ZSH_PLUGINS=(git dotenv osx python kubectl docker zsh-completions zsh-syntax-highlighting zsh-autosuggestions)
+    ZSH_PLUGINS=(git dotenv macos python kubectl docker zsh-completions zsh-syntax-highlighting zsh-autosuggestions)
 
     echo "Setting up ZSH plugins: ${ZSH_PLUGINS[*]}"
     sed -i -e "s/plugins=.*/plugins=(${ZSH_PLUGINS[*]})/" "${HOME}"/.zshrc
