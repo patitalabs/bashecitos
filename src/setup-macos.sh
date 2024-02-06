@@ -64,7 +64,7 @@ function install_git() {
 }
 
 function install_general_tools() {
-    GENERAL_TOOLS=(tree wget watch jq yq ccat)
+    GENERAL_TOOLS=(tree wget watch jq yq ccat asdf)
     echo "Installing some general tools: ${GENERAL_TOOLS[*]}"
 
     for TOOL in "${GENERAL_TOOLS[@]}"; do
