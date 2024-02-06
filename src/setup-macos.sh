@@ -117,17 +117,12 @@ function setup_git() {
 }
 
 function install_docker_tools() {
-    DOCKER_TOOLS=(docker docker-compose docker-machine dive)
+    DOCKER_TOOLS=(docker docker-compose dive)
     echo "Installing Docker tools"
 
     for TOOL in "${DOCKER_TOOLS[@]}"; do
         brew install "${TOOL}"
     done
-}
-
-function install_virtual_box() {
-    echo "Installing VirtualBox since that's where minikube and docker will be run"
-    brew install virtualbox
 }
 
 function install_kubernetes_tools() {
@@ -150,7 +145,6 @@ setup_ohmyzsh_theme
 setup_ohmyzsh_plugins
 setup_git
 install_docker_tools
-install_virtual_box
 install_kubernetes_tools
 
 echo "All done! ✅"
