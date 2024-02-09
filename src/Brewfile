@@ -1,0 +1,21 @@
+# Packages to be installed with brew
+
+## General tools
+brew 'tree'
+brew 'wget'
+brew 'watch'
+brew 'jq'
+brew 'yq'
+brew 'ccat'
+brew 'asdf'
+
+## Docker tools
+brew 'dive'
+
+## Kubernetes tools
+brew 'kubernetes-cli'
+brew 'stern'
+brew 'kubectx'
+brew 'helm'
+brew 'helmfile'
+brew 'k9s'
