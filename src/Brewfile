@@ -8,6 +8,7 @@ brew 'jq'
 brew 'yq'
 brew 'ccat'
 brew 'asdf'
+brew 'gh'
 
 ## Docker tools
 brew 'dive'
