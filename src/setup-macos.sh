@@ -63,13 +63,10 @@ function install_git() {
     fi
 }
 
-function install_general_tools() {
-    GENERAL_TOOLS=(tree wget watch jq yq ccat asdf)
-    echo "Installing some general tools: ${GENERAL_TOOLS[*]}"
-
-    for TOOL in "${GENERAL_TOOLS[@]}"; do
-        brew install "${TOOL}"
-    done
+function install_brewed_tools() {
+  curl -fsSL https://raw.githubusercontent.com/patitalabs/bashecitos/main/src/Brewfile -o /tmp/brewfile
+  brew bundle --file=/tmp/brewfile
+  rm /tmp/brewfile
 }
 
 function install_ohmyzsh() {
@@ -116,36 +113,16 @@ function setup_git() {
     fi
 }
 
-function install_docker_tools() {
-    DOCKER_TOOLS=(docker docker-compose dive)
-    echo "Installing Docker tools"
-
-    for TOOL in "${DOCKER_TOOLS[@]}"; do
-        brew install "${TOOL}"
-    done
-}
-
-function install_kubernetes_tools() {
-    KUBERNETES_TOOLS=(stern kubernetes-cli minikube helm helmfile k9s kubectx)
-    echo "Installing Kubernetes tools: ${KUBERNETES_TOOLS[*]}"
-
-    for TOOL in "${KUBERNETES_TOOLS[@]}"; do
-        brew install "${TOOL}"
-    done
-}
-
 echo "Going to setup a new macOS 💻"
 
 print_preface
 install_git
-install_general_tools
+install_brewed_tools
 install_ohmyzsh
 install_ohmyzsh_plugins
 setup_ohmyzsh_theme
 setup_ohmyzsh_plugins
 setup_git
-install_docker_tools
-install_kubernetes_tools
 
 echo "All done! ✅"
 exit 0
