@@ -13,6 +13,11 @@ brew 'gh'
 ## Docker tools
 brew 'dive'
 
+## Terraform tools
+brew 'terraform'
+brew 'tfenv'
+brew 'tflint'
+
 ## Kubernetes tools
 brew 'kubernetes-cli'
 brew 'stern'
