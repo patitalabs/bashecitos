@@ -9,6 +9,7 @@ brew 'yq'
 brew 'ccat'
 brew 'asdf'
 brew 'gh'
+brew 'direnv'
 
 ## Docker tools
 brew 'dive'
