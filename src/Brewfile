@@ -8,9 +8,15 @@ brew 'jq'
 brew 'yq'
 brew 'ccat'
 brew 'gh'
+brew 'direnv'
 
 ## Docker tools
 brew 'dive'
+
+## Terraform tools
+brew 'terraform'
+brew 'tfenv'
+brew 'tflint'
 
 ## Kubernetes tools
 brew 'kubernetes-cli'
