@@ -15,7 +15,7 @@ jobs:
         fail-fast: [ false ]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Install bats from source
         run: |
           git clone https://github.com/bats-core/bats-core.git
